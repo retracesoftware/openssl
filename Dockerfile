@@ -36,10 +36,9 @@ RUN apt-get install -y gdb
 ENV LD_LIBRARY_PATH=/opt/openssl
 ENV PYTHONPATH=/usr/local/lib/python3.8/dist-packages
 ENV SSL_CERT_DIR=/etc/ssl/certs
-COPY . /opt/openssl
+#COPY . /opt/openssl
 
 WORKDIR /opt/openssl
-RUN cd /opt/openssl \
-    && ./config -d
 CMD cd /opt/openssl \
+    && ./config -d \
     && make -j5
