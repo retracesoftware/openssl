@@ -28,8 +28,10 @@ jobs:
           name: Creating Artifact
           command: |
             mkdir /tmp/artifacts;
+            zip -r openssl.zip libcrypto.* libssl.*
             cp libcrypto.* /tmp/artifacts/;
             cp libssl.* /tmp/artifacts/;
+            cp openssl.zip /tmp/artifacts/;
 
       - store_artifacts:
           path: /tmp/artifacts
