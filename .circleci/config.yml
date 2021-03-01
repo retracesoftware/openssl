@@ -30,3 +30,6 @@ jobs:
             mkdir /tmp/artifacts;
             cp libcrypto.* /tmp/artifacts/;
             cp libssl.* /tmp/artifacts/;
+
+      - store_artifacts:
+          path: /tmp/artifacts
