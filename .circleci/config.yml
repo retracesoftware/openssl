@@ -24,3 +24,9 @@ jobs:
 
       # deploy the image
       - run: docker run -it -v $(pwd):/opt/openssl retrace/openssl:$CIRCLE_BRANCH
+      - run:
+          name: Creating Artifact
+          command: |
+            mkdir /tmp/artifacts;
+            cp libcrypto.* /tmp/artifacts/;
+            cp libssl.* /tmp/artifacts/;
