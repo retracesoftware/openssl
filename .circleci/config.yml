@@ -20,18 +20,23 @@ jobs:
           docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
 
       # build the application image
-      - run: docker build -t retrace/openssl:$CIRCLE_BRANCH .
+      - run:
+          name: build
+          command: |
+            docker build -t retrace/openssl:$CIRCLE_BRANCH .
 
-      # deploy the image
-      - run: docker run -it -v $(pwd):/opt/openssl retrace/openssl:$CIRCLE_BRANCH
+
+
       - run:
           name: Creating Artifact
+          no_output_timeout: 40m
           command: |
             mkdir /tmp/artifacts;
-            zip -r openssl.zip libcrypto.* libssl.*
-            cp libcrypto.* /tmp/artifacts/;
-            cp libssl.* /tmp/artifacts/;
-            cp openssl.zip /tmp/artifacts/;
+            CID=$(docker create retracesoftware/openssl:$CIRCLE_BRANCH)
+            docker cp ${CID}:/opt/openssl/libcrypto.* /tmp/artifacts/
+            docker cp ${CID}:/opt/openssl/libssl.* /tmp/artifacts/
+            docker rm ${CID}
+            zip /tmp/openssl/openssl.zip /tmp/artifacts/*
 
       - store_artifacts:
           path: /tmp/artifacts
