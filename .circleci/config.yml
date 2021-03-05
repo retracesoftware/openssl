@@ -23,7 +23,7 @@ jobs:
       - run:
           name: build
           command: |
-            docker build -t retrace/openssl:$CIRCLE_BRANCH .
+            docker build -t retracesoftware/openssl:$CIRCLE_BRANCH .
 
 
 
