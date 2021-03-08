@@ -33,8 +33,8 @@ jobs:
           command: |
             mkdir /tmp/artifacts;
             CID=$(docker create retracesoftware/openssl:$CIRCLE_BRANCH)
-            docker cp ${CID}:/opt/openssl/libcrypto.* /tmp/artifacts/
-            docker cp ${CID}:/opt/openssl/libssl.* /tmp/artifacts/
+            docker cp ${CID}:/opt/openssl/libcrypto.so.1.1 /tmp/artifacts/
+            docker cp ${CID}:/opt/openssl/libssl.so.1.1 /tmp/artifacts/
             docker rm ${CID}
             zip /tmp/artifacts/openssl.zip /tmp/artifacts/*
 
