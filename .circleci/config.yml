@@ -25,7 +25,9 @@ jobs:
           command: |
             docker build -t retracesoftware/openssl:$CIRCLE_BRANCH .
 
-
+      # deploy the image
+      - run: |
+          docker push retracesoftware/openssl:$CIRCLE_BRANCH
 
       - run:
           name: Creating Artifact
