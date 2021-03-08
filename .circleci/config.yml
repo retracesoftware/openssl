@@ -36,7 +36,7 @@ jobs:
             docker cp ${CID}:/opt/openssl/libcrypto.* /tmp/artifacts/
             docker cp ${CID}:/opt/openssl/libssl.* /tmp/artifacts/
             docker rm ${CID}
-            zip /tmp/openssl/openssl.zip /tmp/artifacts/*
+            zip /tmp/artifacts/openssl.zip /tmp/artifacts/*
 
       - store_artifacts:
           path: /tmp/artifacts
