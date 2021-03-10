@@ -40,5 +40,5 @@ ENV SSL_CERT_DIR=/etc/ssl/certs
 
 WORKDIR /opt/openssl
 COPY . .
-RUN ./config -d \
+RUN ./config -d -DOPENSSL_NO_RDRAND \
     && make -j5
